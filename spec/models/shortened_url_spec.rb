@@ -283,4 +283,10 @@ describe Shortener::ShortenedUrl, type: :model do
       end
     end
   end
+
+  describe '.extract_token' do
+    it 'allows non-alphanumeric characters' do
+      expect(Shortener::ShortenedUrl.extract_token('my-token')).to eq('my-token')
+    end
+  end
 end

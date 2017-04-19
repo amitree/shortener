@@ -40,14 +40,6 @@ describe Shortener::ShortenedUrlsController, type: :controller do
         end
       end
 
-      context 'real key with trailing characters' do
-        let(:key) { "#{short_url.unique_key}-" }
-
-        it 'redirects to the destination url' do
-          expect(response).to redirect_to destination
-        end
-      end
-
       context 'parameters on short url' do
         let(:params) { { foo: 34, bar: 49 } }
         let(:key) { short_url.unique_key }

@@ -74,9 +74,8 @@ class Shortener::ShortenedUrl < ActiveRecord::Base
   end
 
   def self.extract_token(token_str)
-    # only use the leading valid characters
-    # escape to ensure custom charsets with protected chars do not fail
-    /^([#{Regexp.escape(Shortener.key_chars.join)}]*).*/.match(token_str)[1]
+    # we are managing our own token uniqueness, and want to allow '-' in our custom keys
+    token_str
   end
 
   def self.fetch_with_token(token: nil, additional_params: {}, track: true)
